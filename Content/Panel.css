@@ -1,0 +1,94 @@
+﻿.panel {
+    
+   margin:5px;
+}
+
+.panel-defalut {
+}
+
+.panel-primary {
+}
+.panel-success {
+}
+.panel-error {
+}
+
+
+.panel-defalut .panel-title {
+    background-color: #eee;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    color: white;
+    margin: 0px;
+    font-family: 'Microsoft YaHei UI';
+    font-size: 16px;
+   
+}
+
+.panel-primary .panel-title {
+    background-color: #337ab7;
+    color: white;
+    border-color: #337ab7;
+    border-style: solid;
+    border-width: 1px 1px 0px 1px;
+    -moz-border-radius-topleft: 5px;
+    border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-right-radius: 5px;
+    padding: 8px;
+    margin: 0px;
+    font-family: 'Microsoft YaHei UI';
+    font-size: 16px;
+    border-collapse: collapse;
+}
+
+.panel-success .panel-title {
+    background-color: #dff0d8;
+    color: #3c763d;
+    border-color: #3c763d;
+    border-style: solid;
+    border-width: 1px 1px 0px 1px;
+    -moz-border-radius-topleft: 5px;
+    border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-right-radius: 5px;
+    padding: 8px;
+    margin: 0px;
+    font-family: 'Microsoft YaHei UI';
+    font-size: 16px;
+    border-collapse: collapse;
+}
+
+.panel-error .panel-title {
+    background-color: #ff0000;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    color: white;
+    margin: 0px;
+    font-family: 'Microsoft YaHei UI';
+    font-size: 16px;
+}
+
+
+
+.panel-defalut .panel-content,
+.panel-primary .panel-content,
+.panel-success .panel-content {
+    padding: 15px;
+    box-sizing: padding-box;
+    border: 1px #3c763d solid;
+    -moz-border-radius-bottomleft: 5px;
+    border-bottom-left-radius: 5px;
+
+    -moz-border-radius-bottomright: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.panel-error .panel-content {
+     
+}
+
+
+

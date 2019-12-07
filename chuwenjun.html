@@ -1,0 +1,1991 @@
+﻿
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+
+    <script src="Scripts/jquery-1.12.4.min.js"></script>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=9,IE=10,IE=11,IE=EDGE" />
+    <link href="Scripts/jQuery-contextMenu-master/dist/jquery.contextMenu.min.css" rel="stylesheet" />
+    <script src="Scripts/jQuery-contextMenu-master/dist/jquery.contextMenu.min.js"></script>
+    <script src="Scripts/jQuery-contextMenu-master/dist/jquery.ui.position.min.js"></script>
+
+
+    <link href="Scripts/jquery-easyui-1.5.1/themes/default/easyui.css" rel="stylesheet" />
+    <link href="Scripts/jquery-easyui-1.5.1/themes/icon.css" rel="stylesheet" />
+    <link href="Scripts/jquery-easyui-1.5.1/themes/color.css" rel="stylesheet" />
+
+    <script src="Scripts/jquery-easyui-1.5.1/jquery.easyui.min.js"></script>
+    <script src="Scripts/jquery-easyui-1.5.1/locale/easyui-lang-zh_CN.js"></script>
+
+    <script src="Scripts/jquery-validation-1.15.0/dist/jquery.validate.min.js"></script>
+    <script src="Scripts/jquery-validation-1.15.0/dist/localization/messages_zh.min.js"></script>
+
+
+
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="Scripts/bootstrap.min.js"></script>
+
+    <script src="Content/DataCommon.js"></script>
+
+
+
+    <title></title>
+    <style>
+
+
+
+
+        html, body {
+            margin: 0;
+            padding: 5px;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .min, #mainContent {
+            min-height: 400px;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+
+
+        .tdSelected {
+            background-color: powderblue;
+        }
+
+        table {
+            overflow: auto;
+        }
+        /*th {
+            text-align: center;
+            border: 1px solid #c8c8c8;
+            width: 350px;
+            height: 40px;
+        }*/
+
+        .desigerTable {
+        }
+
+            .desigerTable th {
+                text-align: center;
+                border: 1px solid #c8c8c8;
+                width: 350px;
+                height: 40px;
+                font-family: 'Microsoft YaHei UI';
+                font-size: 18px;
+            }
+
+        .protable {
+            font-size: 10px;
+            font-family: 'Microsoft YaHei UI';
+            color: black;
+        }
+
+
+        #filed label.error, #formNew label.error, #tabitemform1 label.error, #tabitemform label.error, #itemform label.error, #formtablepors label.error {
+            color: red;
+        }
+
+        .eleHover {
+            background-color: #7ca09f;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="panel" style="margin-bottom: 10px;">
+
+
+        <div class="form-inline">
+            <div class="form-group">
+                <button type="button" class="btn btn-default  btn-toolbar" style="margin: 3px" id="btnReturn">
+                    <span class="glyphicon glyphicon-home" aria-hidden="true">返回设计列表</span>
+                </button>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-default  btn-toolbar" style="margin: 3px" id="Button1">
+                    <span class="glyphicon glyphicon-floppy-save" aria-hidden="true">保存</span>
+                </button>
+            </div>
+            <div class="form-group" style="margin-left:100px;">
+                <label>容器选择器</label>
+                <select id="Select1" class=" form-control" style="z-index:9999"></select>
+            </div>
+
+            <div class="form-group">
+                <button type="button" class="btn  btn-danger  btn-toolbar" style="margin: 3px" id="deleteContainer">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true">删除容器</span>
+                </button>
+
+
+                <div class="form-group">
+                    <button type="button" class="btn   btn-primary  btn-toolbar" style="margin: 3px" id="editContainer">
+                        <span class="  glyphicon glyphicon-edit" aria-hidden="true">编辑容器</span>
+                    </button>
+
+
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+        </div>
+
+
+
+        <div id="main" class="row">
+
+            <div class="col-md-2">
+
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading" style="background-color:#009cd0">
+                        <h1 class="panel-title">
+                            控件
+
+                            <div style="float: right; background-color: transparent; border: 0; color: white" class="btn btn-default btn-xs">
+                                <span class="glyphicon glyphicon-resize-small" aria-hidden="true"></span>
+                            </div>
+                        </h1>
+
+                    </div>
+                    <div class="panel-body  ">
+
+                        <div class="panel-group" id="accordionLeft" role="tablist" aria-multiselectable="true">
+
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <h4 class="panel-title">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordionLeft" href="#collapseOneLeft" aria-expanded="true" aria-controls="collapseOneLeft">
+                                            基本控件
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOneLeft" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="panel-body">
+                                        <div nttype="text" class="btn btn-default btn-sm dragitem" style="margin: 3px; background-color: #c8c8c8">
+                                            <span class=" glyphicon glyphicon-edit" aria-hidden="true"></span>文本输入
+                                        </div>
+
+                                        <div nttype="password" class="btn btn-default btn-sm dragitem" style="margin: 3px; background-color: #c8c8c8">
+                                            <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>密码控件
+                                        </div>
+                                        <div nttype="select" class="btn btn-default btn-sm dragitem" style="margin: 3px; background-color: #c8c8c8">
+                                            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>下拉列表
+                                        </div>
+
+                                        <div nttype="checkbox" class="btn btn-default  btn-sm dragitem" style="margin: 3px; background-color: #c8c8c8">
+                                            <span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>选择控件
+                                        </div>
+
+                                        <div nttype="radio" class="btn btn-default btn-sm dragitem" style="width; margin: 3px; background-color: #c8c8c8">
+                                            <span class="glyphicon glyphicon-record" aria-hidden="true"></span>单选控件
+                                        </div>
+
+                                        <div nttype="file" class="btn btn-default btn-sm dragitem" style="margin: 3px; background-color: #c8c8c8">
+                                            <span class="glyphicon glyphicon-level-up" aria-hidden="true"></span>文件上传
+                                        </div>
+
+                                        <div nttype="textarea" class="btn btn-default btn-sm dragitem" style="margin: 3px; background-color: #c8c8c8">
+                                            <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>文本区域
+                                        </div>
+
+
+                                        <div nttype="table" class="btn btn-default btn-sm dragitem" style="width; margin: 3px; background-color: #c8c8c8">
+                                            <span class="glyphicon glyphicon-th" aria-hidden="true"></span>表格控件
+                                        </div>
+
+                                        <div nttype="datetime" class="  btn btn-default btn-sm dragitem" style="width; margin: 3px; background-color: #c8c8c8">
+                                            <span class=" glyphicon glyphicon-calendar" aria-hidden="true"></span>时间控件
+                                        </div>
+
+
+
+
+
+
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingThree">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionLeft" href="#collapseOneLeft12321" aria-expanded="true" aria-controls="collapseOneLeft12321">
+                                            按钮控件
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOneLeft12321" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="panel-body">
+
+
+                                        <div nttype="submit" class="  btn btn-default btn-sm dragitem" style="width; margin: 3px; background-color: #c8c8c8">
+                                            <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>提交按钮
+                                        </div>
+
+                                        <div nttype="reset" class="  btn btn-default btn-sm dragitem" style="width; margin: 3px; background-color: #c8c8c8">
+                                            <span class=" glyphicon glyphicon-resize-small" aria-hidden="true"></span>重置按钮
+                                        </div>
+
+
+
+
+
+                                        <div nttype="deliver" class="  btn btn-default btn-sm dragitem" style="width; margin: 3px; background-color: #c8c8c8">
+                                            <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>转派按钮
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingTwo">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionLeft" href="#collapseTwoLeft" aria-expanded="false" aria-controls="collapseTwoLeft">
+                                            容器控件
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwoLeft" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                                    <div class="panel-body">
+                                        <div nttype="detabs" class="  btn btn-default btn-sm dragitem" style="width; margin: 3px; background-color: #c8c8c8">
+                                            <span class=" glyphicon glyphicon-list-alt" aria-hidden="true"></span>选项卡控件
+                                        </div>
+
+                                        <div nttype="decolls" class="  btn btn-default btn-sm dragitem" style="width; margin: 3px; background-color: #c8c8c8">
+                                            <span class=" glyphicon glyphicon-tasks" aria-hidden="true"></span>口风琴控件
+                                        </div>
+
+                                        <div nttype="detables" class="  btn btn-default btn-sm dragitem" style="width; margin: 3px; background-color: #c8c8c8">
+                                            <span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span>表格设计器
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+            <div class="col-md-10">
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading" style="background-color:#009cd0">
+                        <h1 class="panel-title">设计器</h1>
+                    </div>
+                    <div tcount="0" class="panel-body" style="overflow: auto; min-height: 400px" id="mainContent" runat="server">
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="
+            padding: 10px;
+box-sizing: border-box;
+width: 300px;
+position: fixed;
+right: 0;
+top:-1px;
+" id="afooter"
+                 data-options="handle:'#title'">
+                <div id="title" class="panel-heading" style="background-color: #2b2b2b; box-sizing:border-box; color: white;height:35px;line-height:35px;padding: 0 10px;">
+                    <span>属性编辑框</span>
+
+                    <div hide="1" id="titletool" style="float:right;height:35px;line-height:35px; cursor:pointer" class="glyphicon glyphicon-resize-full" aria-hidden="true"></div>
+
+
+
+                </div>
+                <div style="  color: #003580; background-color:powderblue;display:none" id="propcontent">
+                    <table class="table table-bordered protable" id="tableCommon">
+                        <tr>
+                            <td>标题名称</td>
+                            <td>
+                                <input id="proptitle" type="text" style="width:130px" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>标题id</td>
+                            <td>
+                                <input id="proptitleid" type="text" style="width:130px" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>标题name</td>
+                            <td>
+                                <input id="proptitlename" type="text" style="width:130px" />
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>标签id</td>
+                            <td>
+                                <input id="propid" type="text" style="width:130px" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>标签name</td>
+                            <td>
+
+                                <input id="propname" type="text" style="width:130px" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>长度</td>
+                            <td>
+                                <input type="text" style="width:130px" id="proplength" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>对其方式</td>
+                            <td>
+                                <select id="proptextalign" style="width:130px">
+                                    <option value="left">偏左</option>
+                                    <option value="right">偏右</option>
+                                    <option value="center">居中</option>
+
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>高度</td>
+                            <td>
+                                <input id="propheight" type="text" value="50px" style="width:130px" />
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>是否可编辑</td>
+                            <td>
+                                <select style="width:130px" id="propedit">
+                                    <option value="disabled">是</option>
+                                    <option>否</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>是否隐藏</td>
+                            <td>
+                                <select style="width:130px">
+                                    <option>是</option>
+                                    <option selected>否</option>
+                                </select>
+                            </td>
+                        </tr>
+
+
+
+                        <tr>
+                            <td colspan="2" style="text-align: right">
+                                <button type="button" class="btn  btn-primary  btn-toolbar btn-sm" style="margin: 3px;background-color:#009cd0" id="btnSave">
+                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                </button>
+
+
+                                <button type="button" class="btn  btn-primary  btn-toolbar btn-sm" style="margin: 3px;background-color:#009cd0" id="btnSave">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+
+
+                </div>
+
+            </div>
+        </div>
+
+        <div id="dlg" class="easyui-dialog" style="width:400px"
+             closed="true" buttons="#dlg-buttons">
+            <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
+                <div style="margin-bottom:10px">
+                    <input name="zuo" id="zuo" class="easyui-textbox" required="true" validType="number" label="左" style="width:100%">
+                </div>
+                <div style="margin-bottom:10px">
+                    <input name="you" id="you" class="easyui-textbox" required="true" validType="number" label="右" style="width:100%">
+                </div>
+            </form>
+        </div>
+        <div id="dlg-buttons">
+            <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUser()" style="width:90px">合并</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">取消合并</a>
+        </div>
+
+        <style type="text/css">
+            .title {
+                margin-bottom: 10px;
+            }
+
+            .dragitem {
+            }
+
+            .targetarea {
+                border: 1px solid #ddd;
+                width: 350px;
+                height: 40px;
+                text-align: left;
+            }
+
+            .proxy {
+                border: 1px solid #ccc;
+                width: 80px;
+                background: #fafafa;
+            }
+
+            .labeltitle {
+                width: 200px;
+                display: inline;
+                padding: 5px;
+            }
+
+            .wrapper {
+                padding: 10px;
+                overflow: auto;
+                position: relative;
+            }
+
+            .delete {
+                position: absolute;
+                right: 0;
+                top: 0;
+                cursor: pointer;
+                background-image: url('Content/images/delb.png');
+                height: 20px;
+                width: 20px;
+                background-size: 20px
+            }
+
+            .containerSelected {
+                border: 3px dotted maroon;
+            }
+        </style>
+
+        <script src="Scripts/Designer/Main.js"></script>
+
+        <script type="text/javascript">
+
+        function SetIdCount(id) {
+            $("#mainContent").attr("tcount", id);
+        }
+
+        var url;
+        var delist = [];
+        function newHeBing() {
+            $('#dlg').dialog('open').dialog('center').dialog('setTitle', '合并单元格');
+            $('#fm').form('clear');
+            $('#fm').form('load', {
+                zuo: '0',
+                you: '0',
+
+            });
+         }
+
+        function saveUser() {
+            $('#fm').form('submit', {
+                onSubmit: function (data) {
+                    var ret = $(this).form('validate');
+                    if (ret) {
+                        try {
+                            var left1 = parseInt( $("#zuo").val());
+                            var you1 = parseInt($("#you").val());
+                            if (left1 || you1) {
+                                left1 = left1 || 0;
+                                you1 = you1 || 0;
+
+                                var tr1 = which.parent();
+                                var index = tr1.find("td").index(which);
+                                var b1 = index - left1;
+                                var b2 = index + you1;
+
+                                if (b1 < 0) { b1 = 0 };
+                                for (var i = b1; i <= b2; i++)
+                                {
+                                    if (i != index) {
+                                        tr1.find("td").eq(i).attr("ntdelete","1");
+                                    }
+                                }
+                                tr1.find("td[ntdelete=1]").remove();
+                                which.attr("colspan", b2 - b1 + 1);
+
+                                $('#dlg').dialog('close');
+
+                            }
+                            else
+                            {
+                                alert("数据输入有误")
+                            }
+                        }
+                        catch (err)
+                        {
+                            alert(err);
+                        }
+                    }
+                    else {
+
+                    }
+                    return false;
+                },
+                success: function (data) {
+                    console.log(data)
+                }
+            });
+        }
+        </script>
+
+        <script>
+
+            function Fresh() {
+                //表格和口风琴 往tab里放
+                DropContainers('div[nttype="detables"],div[nttype="decolls"]', $(".tab-pane"))
+
+                //表格 往口风琴里放
+                DropContainers('div[nttype="detables"]', $(".panel-body"))
+
+                //把控件往td里面拖拽
+                DropEles($(".dragitem"), $('td.targetarea'))
+
+                //3种组件往大框架里放
+                DropContainers('div[nttype="detabs"],div[nttype="detables"],div[nttype="decolls"]', $("#mainContent"));
+            }
+
+
+            $(document).ready(function () {
+
+                $("#titletool").click(function () {
+                    if ($(this).attr("hide") == "0") {
+                        $('#propcontent').slideUp();
+
+                        $(this).removeClass("glyphicon-resize-small")
+                        $(this).attr("hide", '1');
+                    }
+                    else
+                    {
+                        $("#propcontent").slideDown();
+
+                        $(this).addClass("glyphicon-resize-small")
+                        $(this).attr("hide", '0');
+                    }
+                });
+
+                jQuery.validator.addMethod("positiveinteger", function (value, element) {
+                    var aint = parseInt(value);
+                    return aint > 0 && (aint + "") == value;
+                }, "请您输入正整数");
+
+
+                $.contextMenu({
+                    selector: "table[id^='t'] td,#abc td",
+                    callback: function (key, options) {
+                        if (key == "deleteHang") {
+                            $(options.$trigger).parent().remove();
+                        }
+                        else if (key == "deleteCell") {
+                            $(options.$trigger).remove();
+                        }
+                        else if (key == "deleteUpHang") {
+                            $(options.$trigger).parent().prevAll().remove();
+                        }
+                        else if (key == "deleteDownHang") {
+                            $(options.$trigger).parent().nextAll().remove();
+                        }
+
+                        //在上面附加一行
+                        else if (key == "approwup") {
+                            var maliang = $(options.$trigger).parent();
+                            var colone = maliang.clone();
+                            colone.find("td").html("").removeClass().addClass("targetarea");
+                            $(options.$trigger).parent().before(colone);
+
+                            //把控件往td里面拖拽
+                            DropEles($(".dragitem"), colone.find("td"))
+
+                        }
+                        //在下面附加一行
+                        else if (key == "approwdown") {
+                            var maliang = $(options.$trigger).parent();
+                            var colone = maliang.clone();
+                            colone.find("td").html("").removeClass().addClass("targetarea");
+                            $(options.$trigger).parent().after(colone);
+                            DropEles($(".dragitem"), colone.find("td"))
+                        }
+
+                        else if (key == "hebing") {
+                            //var caonima = $("<td class='targetarea' colspan='2'></td>");
+                            //$(options.$trigger).parent().html(caonima)
+                            if ($(options.$trigger).is("[colspan]")) {
+                                alert("不能合并");
+                                return;
+                            }
+                            which = $(options.$trigger)
+                            newHeBing();
+                        }
+                        else if (key == "appcellleft") {
+                            var td1 = $("<td  class='targetarea'></td>");
+                            Drop(td1);
+                            $(options.$trigger).before(td1)
+                        }
+                        else if (key == "appcellright") {
+                            var td1 = $("<td  class='targetarea'></td>");
+                            Drop(td1);
+                            $(options.$trigger).after(td1)
+                        }
+
+                        //在右侧附加一列
+                        else if (key == "appcolright") {
+                            var tr1 = $(options.$trigger).parent();
+                            var aa = tr1.find("td").index($(options.$trigger));
+
+                            var table1 = tr1.parent().parent().parent();
+                            table1.find("tr").each(function (index, item) {
+                                var td1 = $("<td  class='targetarea'></td>");
+                                Drop(td1);
+                                $(item).find("td").eq(aa).after(td1);
+                            });
+
+                        }
+                        //在左侧附加一列
+                        else if (key == "appcolleft") {
+                            var tr1 = $(options.$trigger).parent();
+                            var aa = tr1.find("td").index($(options.$trigger));
+
+                            var table1 = tr1.parent().parent().parent();
+                            table1.find("tr").each(function (index, item) {
+                                var td1 = $("<td  class='targetarea'></td>");
+                                Drop(td1);
+                                $(item).find("td").eq(aa).before(td1);
+                            });
+                        }
+                        //删除此列
+                        else if (key == "deleteLie") {
+                            var tr1 = $(options.$trigger).parent();
+                            var aa = tr1.find("td").index($(options.$trigger));
+
+                            var table1 = tr1.parent().parent().parent();
+                            table1.find("tr").each(function (index, item) {
+
+                                $(item).find("td").eq(aa).remove();
+                            });
+                        }
+
+                        else if (key == "deleteLieLeft") {
+                            var tr1 = $(options.$trigger).parent();
+                            var aa = tr1.find("td").index($(options.$trigger));
+
+                            var table1 = tr1.parent().parent().parent();
+                            table1.find("tr").each(function (index, item) {
+
+                                $(item).find("td:lt(" + aa+")").remove();
+                            });
+                        }
+
+                        else if (key == "deleteLieRight") {
+                            var tr1 = $(options.$trigger).parent();
+                            var aa = tr1.find("td").index($(options.$trigger));
+
+                            var table1 = tr1.parent().parent().parent();
+                            table1.find("tr").each(function (index, item) {
+                                $(item).find("td:gt(" + aa + ")").remove();
+                            });
+                        }
+
+                    },
+                    items: {
+
+                        "appcolright": {
+                            name: "右侧附加一列", icon: function () {
+                                return 'context-menu-icon context-menu-icon-add';
+                            }
+                        },
+
+                        "appcolleft": {
+                            name: "左侧附加一列", icon: function () {
+                                return 'context-menu-icon context-menu-icon-add';
+                            }
+                        },
+
+
+
+                        "appcellright": {
+                            name: "右侧附加一格", icon: function () {
+                                return 'context-menu-icon context-menu-icon-add';
+                            }
+                        },
+
+                        "appcellleft": {
+                            name: "左侧附加一格", icon: function () {
+                                return 'context-menu-icon context-menu-icon-add';
+                            }
+                        },
+
+                        "approwup": {
+                            name: "上面附加一行", icon: function () {
+                                return 'context-menu-icon context-menu-icon-add';
+                            }
+                        },
+
+                        "approwdown": {
+                            name: "下面侧附加一行", icon: function () {
+                                return 'context-menu-icon context-menu-icon-add';
+                            }
+                        },
+
+                        "deleteCell": {
+                            name: "删除当前单元格", icon: function () {
+                                return 'context-menu-icon context-menu-icon-delete';
+                            }
+                        }
+
+                        ,
+                        "deleteLie": {
+                            name: "删除此列", icon: function () {
+                                return 'context-menu-icon context-menu-icon-delete';
+                            }
+                        },
+
+
+                        "deleteLieLeft": {
+                            name: "删除此列左侧全部列", icon: function () {
+                                return 'context-menu-icon context-menu-icon-delete';
+                            }
+                        },
+
+                        "deleteLieRight": {
+                            name: "删除此列右侧全部列", icon: function () {
+                                return 'context-menu-icon context-menu-icon-delete';
+                            }
+                        },
+
+                        "deleteHang": {
+                            name: "删除此行", icon: function () {
+                                return 'context-menu-icon context-menu-icon-delete';
+                            }
+                        },
+
+
+
+                        "deleteUpHang": {
+                            name: "删除此行上面所有的行", icon: function () {
+                                return 'context-menu-icon context-menu-icon-delete';
+                            }
+                        }
+
+                        ,
+
+                        "deleteDownHang": {
+                            name: "删除此行下面所有的行", icon: function () {
+                                return 'context-menu-icon context-menu-icon-delete';
+                            }
+                        }
+
+                        ,
+
+                        "hebing": {
+                            name: "合并单元格", icon: function () {
+                                return 'context-menu-icon context-menu-icon-copy';
+                            }
+                        }
+                    }
+                });
+                var current = null;
+                $(document).on("click", "div[data-type]", function () {
+                    if ($(this).attr("data-type") == "8") {
+
+                        $(".delete").hide();
+                        $(this).find(".delete").show();
+
+                        var labelId = $(this).find("label").html();
+                        var tb = $(this).find("table");
+                        var tableName = $(this).find("table").attr("name");
+                        var tableId = $(this).find("table").attr("id");
+                        current = $(this);
+                        $("#tabletitle").val(labelId);
+                        $("#tablename").val(tableName);
+                        $("#tableid").val(tableId);
+
+                        $("#tableprops").find("tbody tr").remove();
+                        tb.find("th").each(function (idx, itm) {
+                            var filed = $(itm).attr("filed") || "";
+                            $("#tableprops tbody").append("<tr><td>" + $(itm).html() + "</td><td>" + filed + "</td><td>  <button type='button' style='display:none' class='btn btn-primary btn-xs' aria-label='Left Align'><span class='glyphicon glyphicon-edit' aria-hidden='true'>编辑</span></button> <button deletefld type='button' class='btn btn-danger  btn-xs' aria-label='Left Align'><span class='glyphicon glyphicon-remove-circle' aria-hidden='true'  >删除</span></button></td></tr>");
+
+                        });
+
+                        current = $(this);
+                        $('#myModal').modal();
+                    }
+                    else {
+                        $(".delete").hide();
+                        $(this).find(".delete").show();
+                        $("#proptitle").val($(this).find("label").html());
+
+
+                        $("#proptitleid").val($(this).find("label").attr("id"));
+                        $("#proptitlename").val($(this).find("label").attr("name"));
+
+
+                        $("#propname").val($(this).find("input,select,textarea").attr("name"));
+                        $("#propid").val($(this).find("input,select,textarea").attr("id"));
+
+                        $("#proplength").val($(this).find("input,select,textarea").css("width"));
+
+                        $("#propheight").val($(this).find("input,select,textarea").css("height"));
+
+
+                        $('#proptextalign').val($(this).parent().css("text-align"));
+
+
+                        current = $(this);
+                    }
+                });
+
+                $(document).on("click", "div.delete", function () {
+
+                  var that=  $(this)
+                    $.messager.confirm('提醒', '确定要删除吗?', function (r) {
+                        if (r) {
+                            that.parent().remove();
+                        }
+                    });
+                });
+
+                $("#tabitemTable1,#tableprops").on("click", "button[deletefld]", function () {
+                    $(this).parent().parent().remove();
+                });
+
+                $("#tabitemTable1").on("click", "button[del]", function (event) {
+                    delist.push($(this).parents("tr").data("id"));
+                    $(this).parent().parent().remove();
+                    event.preventDefault()
+
+                });
+
+                $("#tabitemTable1").on("click", "button[first]", function () {
+                    if ($(this).parents('tr').is("#tabitemTable1 tbody tr:first")) {
+                        alert("已经在顶部");
+                    }
+                    else {
+                        var t = $(this).parents("tr").clone();
+                        $(this).parents("tbody").prepend(t);
+                        $(this).parents("tr").remove();
+                    }
+                });
+
+                $("#tabitemTable1").on("click", "button[last]", function () {
+                    if ($(this).parents("tr").is("#tabitemTable1 tbody tr:last")) {
+                        alert("已经在底部");
+                    }
+                    else {
+                        var t = $(this).parents("tr").clone();
+                        $(this).parents("tbody").append(t);
+                        $(this).parents("tr").remove();
+                    }
+                });
+
+                $("#tabitemTable1").on("click", "button[up]", function () {
+                    if ($(this).parents("tr").is("#tabitemTable1 tbody tr:first")) {
+                        alert("已经在顶部");
+                    }
+                    else {
+                        var t = $(this).parents("tr").clone();
+                        $(this).parents("tr").prevAll("tr:first").before(t);
+                        $(this).parents("tr").remove();
+
+                    }
+                });
+
+                $("#tabitemTable1").on("click", "button[down]", function () {
+                    if ($(this).parents("tr").is("#tabitemTable1 tbody tr:last")) {
+                        alert("已经在底部部");
+                    }
+                    else {
+                        var t = $(this).parents("tr").clone();
+                        $(this).parents("tr").next("tr").after(t);
+                        $(this).parents("tr").remove();
+                    }
+                });
+
+
+
+
+
+                ///
+                $(document).on("click", "#abc td,table[id^='t'] td", function () {
+                    $('td').removeClass("tdSelected")
+                    $(this).addClass("tdSelected")
+                });
+
+
+
+
+
+                $("#btnSave").click(function () {
+                    current.find("label").html($("#proptitle").val()).end()
+                        .find("input,select,textarea").attr("name", $("#propname").val())
+                        .css("width", $("#proplength").val())
+                        .css("height", $("#propheight").val())
+                        .attr("id", $("#propid").val()).end().
+                        find("label").attr("name", $("#proptitlename").val())
+                        .attr("id", $("#proptitleid").val()).end()
+                        .parent().css("text-align", $("#proptextalign option:selected ").val())
+
+
+
+
+                });
+
+                $("#Button1").click(function () {
+                    var h11 = $("#mainContent").html();
+
+                    var id = getQueryString("id");
+                    $.ajax({
+                        url: "FormAction.ashx",
+                        data: { Action: "UpdateHtml", formhtml: h11, id: id, Tcount:$('#mainContent').attr("tcount")
+                },
+                        success: function (d) {
+                            alert(d);
+                        },
+                        type:"POST"
+                    });
+
+                });
+
+                $('.dragitem').draggable({
+                    revert: true,
+                    deltaX: 10,
+                    deltaY: 10,
+                    proxy: function (source) {
+                        var n = $('<div class="proxy"></div>');
+                        n.html($(source).html()).appendTo('body');
+                        return n;
+                    }
+                });
+                var index1 = 0;
+
+
+
+                Fresh();
+
+
+
+
+                $("#btnReturn").click(function () {
+                    window.location = "Main.aspx";
+                });
+
+                $("#btnNewFd").click(function () {
+                    $('#newfiled').modal();
+                });
+
+                $("#filed").validate({
+                    submitHandler: function (form) {
+                        var data = {
+                            'fldtitle': $("#fldtitle").val(),
+                            'fldname': $("#fldname").val()
+                        }
+
+                        $("#tableprops tbody").append("<tr><td>" + data.fldtitle + "</td><td>" + data.fldname + "</td><td>  <button style='display:none' type='button' class='btn btn-primary btn-xs' aria-label='Left Align'><span class='glyphicon glyphicon-edit' aria-hidden='true'>编辑</span></button> <button deletefld type='button' class='btn btn-danger  btn-xs' aria-label='Left Align'><span class='glyphicon glyphicon-remove-circle' aria-hidden='true'  >删除</span></button></td></tr>");
+                        $('#newfiled').modal('hide')
+                        $('#filed')[0].reset()
+                    }
+                });
+
+                $("#formNew").validate({
+                    submitHandler: function (form) {
+                        current.find("label").html($("#tabletitle").val());
+                        current.find("table").attr("name", $("#tablename").val());
+                        current.find("table").attr("id", $("#tableid").val());
+
+                        current.find("table tbody tr").remove();
+                        current.find("table thead th").remove();
+                        $("#tableprops tbody tr").each(function (index, item) {
+                            current.find("table thead tr").append("<th filed='" + $(item).find("td:eq(1)").html()+"'>" + $(item).find("td:eq(0)").html() + "</th>");
+                        });
+                        $('#myModal').modal("hide");
+                    }
+                });
+
+
+
+
+
+                //tab相关
+                $("#buttonPlus").click(function () {
+                    document.getElementById("tabitemform").reset();
+                    $("#tabitem").modal();
+
+                });
+
+                $("#buttonPlus1").click(function () {
+                    document.getElementById("tabitemform1").reset();
+                    $("#tabitem1").modal();
+                });
+
+                $("#tabitemTable tbody").on('click', 'button[del]', function (e) {
+                    $(this).parent().parent().remove();
+                });
+
+                $("#tabitemform").validate({
+                    submitHandler: function (form) {
+
+                        var tabitemtle = $("#tabitemtle").val();
+                        $("#tabitemTable tbody").append("<tr><td>" + tabitemtle + '</td><td><button del="" type="button" class="btn btn-danger  btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true">删除</span></button></td></tr>')
+                        $("#tabitem").modal('hide');
+
+                    }
+                });
+
+
+                $("#tabitemform1").validate({
+                    submitHandler: function (form) {
+                        var tabitemtle = $("#tabitemtle1").val();
+                        var tr1 = $("<tr><td><input value='" + tabitemtle + "'/>" + "" + '</td><td><button del="" type="button" class="btn btn-danger  btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true">删除</span></button><button first="" type="button" class="btn btn-primary   btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true">置顶</span></button><button last="" type="button" class="btn btn-primary   btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true">置底</span></button><button up="" type="button" class="btn btn-primary   btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true">上移</span></button><button down="" type="button" class="btn btn-primary   btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true">下移</span></button></td></tr>');
+                        var newid = GetNewId();
+                        tr1.data("id", "tabtab" + newid)
+                            .attr("data-id", "tabtab" + newid);
+
+                        tr1.data("op", "add")
+                            .attr("data-op", 'add');
+                        $("#tabitemTable1 tbody").append(tr1);
+                        $("#tabitem1").modal('hide');
+                    }
+                });
+
+                $("#tabitemTablesubmit").click(function () {
+
+                    var li1list = [];
+                    var target1list = [];
+                    var li1 = ' <li role="presentation" class="##1##"><a href="###id##" aria-controls="##id##" role="tab" data-toggle="tab">##title##</a></li>';
+                    var target1 = '<div role="tabpanel" class=" min tab-pane ##1##" id="##id##"></div>'
+
+                    $("#tabitemTable tbody td:even").each(function (index, item) {
+
+                        var after = li1.replace(/##id##/g, 'tabtab' + index).replace(/##title##/g, $(item).html())
+                        var after1 = target1.replace(/##id##/g, 'tabtab' + index)
+                        if (index) {
+                            after = after.replace("##1##", '')
+                            after1 = after1.replace("##1##", '')
+
+                        }
+                        else {
+
+                            after = after.replace("##1##", 'active')
+                            after1 = after1.replace("##1##", 'active')
+                        }
+                      li1list.push(after);
+                      target1list.push(after1);
+                    });
+
+                    var lihtml = li1list.join("")
+                    var targethtml = target1list.join("");
+
+                    var des = ('<div><ul class="nav nav-tabs" data-usage=\"##4##\" role="tablist" id="tab' + GetNewId() + '">##1##</ul><div class="tab-content">##2## </div></div>').replace(/##1##/g, lihtml).replace(/##2##/, targethtml)
+                    var tabsUsage = $("#tabsUsage").val();
+                    des = des.replace(/##4##/g, tabsUsage);
+
+                    $(currentTarget).html(des)
+
+                    $("#detabsDia").modal("hide");
+
+
+
+                    //DropContainers('div[nttype="detabs"],div[nttype="detables"],div[nttype="decolls"]', $('div[role="tabpanel"]'));
+
+                    Fresh()
+                    freshContainers();
+                    return false;
+                });
+
+
+                $("#tabitemTablesubmit1").click(function () {
+
+                    if (curentContainerType == "tablist") {
+
+                        var tabsUsage1 = $("#tabsUsage1").val();
+                        var trcontent = $("#tabitemTable1 tbody tr");
+                        //删除导航
+                        $(delist).each(function (idx, el) {
+                            $(".containerSelected:first").find("a[href='" + el + "']").parents("li").remove();
+                        });
+
+                        //删除目标
+                        $(delist.join(",")).remove();
+
+                        //编辑和新建
+                        $(".containerSelected:first").find("li").remove();
+                        $(trcontent).each(function (idx, el) {
+                            var newid = GetNewId();
+                            var li1 = "";
+                            if ($(el).data("op") == "add") {
+                                li1 = ' <li role="presentation"><a href="###id##" aria-controls="###id##" role="tab" data-toggle="tab">##title##</a></li>'
+                                    .replace(/##title##/g, $(el).find("td:first input").val())
+                                    .replace(/##id##/g, "tabtab" + newid);
+
+                                var d1 = $("<div role='tabpanel' class='min tab-pane  droppable'></div>")
+                                d1.attr("id", "tabtab" + newid);
+                                $(".containerSelected:eq(1)").append(d1);
+                            }
+                            else if ($(el).data("op") == "update") {
+                                li1 = '<li role="presentation"><a href="##id##" aria-controls="##id##" role="tab" data-toggle="tab">##title##</a></li>'
+                                    .replace(/##title##/g, $(el).find("td:first input").val())
+                                    .replace(/##id##/g, $(el).data("id"));
+                            }
+                            $(".containerSelected:first").append(li1)
+                        });
+
+                        $(".containerSelected:first").data("usage", tabsUsage1)
+                            .attr("data-usage", tabsUsage1)
+
+                        $("#detabsDia1").modal("hide");
+                        $(".containerSelected:first").find("li:first a").click();
+                        Fresh();
+                        return false;
+                    }
+                    else if (curentContainerType == "acclist") {
+
+                        var tabsUsage1 = $("#tabsUsage1").val();
+                        var trcontent = $("#tabitemTable1 tbody tr");
+                        //删除目标
+                        $(delist).each(function (idx, el) {
+                           $(".containerSelected").find("#" + el).parent().remove();
+                        });
+
+                        //编辑和新建
+                        $(".containerSelected:first").find("li").remove();
+                        $(trcontent).each(function (idx, el) {
+
+
+                            if ($(el).data("op") == "add") {
+                                var target1 = '<div class="panel panel-default"><div class="panel-heading" role="tab" id="##1##"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" href="###2##" aria-expanded="true" aria-controls="collapseOne">                    ##3##</a></h4></div><div id="##2##" class="panel-collapse collapse ##4##" role="tabpanel" aria-labelledby="##1##"><div class="panel-body min"></div></div></div>'
+                                var newid = GetNewId();
+                                target1 = target1.replace(/##1##/g, "header" + newid + "1")
+                                    .replace(/##2##/g, "content" + newid + "1").
+                                    replace(/##3##/g, $(el).find("td:first input").val());
+                                target1 = target1.replace(/##4##/g, '')
+                                $(".containerSelected").append(target1);
+                            }
+                            else if ($(el).data("op") == "update") {
+                                $("#" + $(el).data("id")).find("a").html($(el).find("td:first input").val());
+                                var org = $("#" + $(el).data("id")).parent();
+                                $(".containerSelected").append(org.clone());
+                                org.remove();
+                            }
+
+                        });
+
+                        $(".containerSelected:first").data("usage", tabsUsage1)
+
+                        $("#detabsDia1").modal("hide");
+                        $(".containerSelected:first").find("li:first a").click();
+                        Fresh();
+                        return false;
+                    }
+                });
+
+                //coll相关
+                $("#buttonPlusCol").click(function () {
+                    document.getElementById("collitemform").reset();
+                    $("#collsitem").modal();
+                });
+
+                $("#collitemcollle tbody").on('click', 'button[del]', function (e) {
+                    $(this).parent().parent().remove();
+                });
+
+                $("#collitemform").validate({
+                    submitHandler: function (form) {
+
+                        var collitemtle = $("#collitemtle").val();
+                        $("#collitemTable tbody").append("<tr><td>" + collitemtle + '</td><td><button del="" type="button" class="btn btn-danger  btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true">删除</span></button></td></tr>')
+
+                        $("#collsitem").modal('hide');
+
+                    }
+                });
+
+                $("#collitemcolllesubmit").click(function () {
+
+                    var nid = GetNewId();
+                    var li1list = [];
+                    var target1list = [];
+
+
+                    $("#collitemTable tbody td:even").each(function (index, item) {
+                        var target1 = '<div class="panel panel-default"><div class="panel-heading" role="tab" id="##1##"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion' + nid+'" href="###2##" aria-expanded="true" aria-controls="collapseOne">                    ##3##</a></h4></div><div id="##2##" class="panel-collapse collapse ##4##" role="tabpanel" aria-labelledby="##1##"><div class="panel-body min"></div></div></div>'
+                        var newid = GetNewId();
+                        target1 = target1.replace(/##1##/g, "header" + newid + index.toString())
+                            .replace(/##2##/g, "content" + newid + index.toString()).
+                            replace(/##3##/g, $(item).html());
+
+                        if (index === 0) {
+                            target1 = target1.replace(/##4##/g, 'in')
+                        }
+                        else {
+                            target1 = target1.replace(/##4##/g, '')
+                        }
+
+                        target1list.push(target1);
+                    });
+
+
+                    var targethtml = target1list.join("");
+                    //var newid = parseInt($('#mainContent').attr("tcount")) + 1;
+
+                    var des = '<div class="panel-group" data-usage=\"##4##\" id="accordion' + nid  + '" role="acclist" aria-multiselectable="true">' + targethtml + '</div>';
+
+                    var navsUsage = $("#navsUsage").val();
+                    des = des.replace(/##4##/g, navsUsage);
+
+                    $(currentTarget).html(des);
+                    $("#decollsDia").modal("hide");
+
+                    Fresh();
+                    freshContainers();
+                    return false;
+                });
+
+                //tables相关
+                $("#itemform").validate({
+                    submitHandler: function (form) {
+                        var formtle = $('#itemtle').val()
+                        var formhang = parseInt( $('#itemhang').val())
+                        var formlie = parseInt($('#itemlie').val());
+
+
+                        var formusage = $("#tableUsage").val();
+
+                        ///
+                        var des = "";
+                        des += "<table role='table' class=\"desigerTable\" data-usage=\"##7##\" id=\"t##4##\"  cellpadding=\"10\" cellspacing=\"10\" ><thead><tr><th  colspan=\"##0##\">##1##</th></thead></tr><tbody>##2##</tbody></table>";
+                        des = des.replace(/##0##/g, formlie.toString());
+                        des = des.replace(/##1##/g, formtle);
+
+                        var newid = GetNewId();
+                        des = des.replace(/##4##/g, newid);
+                        des = des.replace(/##7##/g, formusage);
+
+
+                        var listtr = [];
+                        for (i = 0; i < formhang; i++) {
+                            var listtd = [];
+                            for (j = 0; j < formlie; j++) {
+                                listtd.push("<td class=\" targetarea\"></td>");
+                            }
+                            listtr.push("<tr>"+listtd.join("")+"</tr>");
+                        }
+                        des = des.replace(/##2##/g, listtr.join(""));
+
+
+                        $(currentTarget).html(des);
+
+
+                        Fresh();
+                        freshContainers();
+                        $('#detablesDia').modal('hide');
+
+
+                    }
+                })
+
+
+                $("#formtablepors").validate({
+                    submitHandler: function (form) {
+                        var tableTltPorps = $("#tableTltPorps").val();
+                        var tableUsagePorps = $("#tableUsagePorps").val();
+
+                        $(".containerSelected").attr("data-usage", tableUsagePorps)
+                            .data("usage", tableUsagePorps)
+                            .find("th").html(tableTltPorps);
+                        $("#tablenewprops").modal("hide");
+                        freshContainers();
+
+
+                    }
+                }
+                );
+
+
+                $("#Select1").change(function () {
+                    $(".containerSelected").removeClass("containerSelected");
+                    var sid = $(this).find("option:selected").val();
+                    if ($(this).attr("role") == "acclist") {
+                        $("#" + sid).addClass('containerSelected')
+                    }
+                    else {
+                        $("#" + sid).next().addClass("containerSelected").end().addClass('containerSelected')
+
+                    }
+                });
+                freshContainers();
+
+                $("#deleteContainer").click(function () {
+                    if ($(".containerSelected").length == 0) {
+
+                    }
+
+                    else {
+                        if (confirm("您确定要删除吗？")) {
+                            $(".containerSelected").remove();
+                            freshContainers();
+                            $("#Button1").click();
+                        }
+                    }
+
+                });
+
+                $("#editContainer").click(function () {
+                    delist = [];
+                    if ($(".containerSelected").length == 0) {
+
+                    }
+
+                    else {
+                       var role1= $(".containerSelected").attr("role")
+                       if (role1 == "table") {
+
+                           var usage = $(".containerSelected").data("usage")
+                           var ht = $(".containerSelected").find("th").html();
+
+                           $("#tableTltPorps").val(ht);
+                           $("#tableUsagePorps").val(usage);
+
+
+
+                           $("#tablenewprops").modal();
+                       }
+                       else if (role1 == "tablist") {
+                           $("#tabsUsage1").val($(".containerSelected:first").data("usage"));
+                           $("#tabitemTable1").find("tbody").children().remove();
+                           $(".containerSelected:first").find("li").each(function (idx, el) {
+                               var tr1 = $("<tr><td><input value='" + $(el).find("a").html() + "'/>" + "" + '</td><td><button del="" type="button" class="btn btn-danger  btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true">删除</span></button><button first="" type="button" class="btn btn-primary   btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true">置顶</span></button><button last="" type="button" class="btn btn-primary   btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true">置底</span></button><button up="" type="button" class="btn btn-primary   btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true">上移</span></button><button down="" type="button" class="btn btn-primary   btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true">下移</span></button></td></tr>');
+                               tr1.data("id", $(el).find("a").attr("href"))
+                                   .attr("data-id", $(el).find("a").attr("href"));
+                               tr1.data("op", "update")
+                                   .attr("data-op", "update")
+                               $("#tabitemTable1").find("tbody").append(tr1);
+                           });
+                           curentContainerType = "tablist";
+                           $("#detabsDia1").modal();
+
+                       }
+                       else if (role1 == "acclist") {
+
+                           //编辑acc嘛
+                           curentContainerType = "acclist";
+
+
+                           $("#tabsUsage1").val($(".containerSelected").data("usage"));
+                           $("#tabitemTable1").find("tbody").children().remove();
+                           $(".containerSelected>div").each(function (idx, el) {
+                               var tr1 = $("<tr><td><input value='" + $(el).find(">div:first a").html().trim() + "'/>" + "" + '</td><td><button del="" type="button" class="btn btn-danger  btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true">删除</span></button><button first="" type="button" class="btn btn-primary   btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true">置顶</span></button><button last="" type="button" class="btn btn-primary   btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true">置底</span></button><button up="" type="button" class="btn btn-primary   btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true">上移</span></button><button down="" type="button" class="btn btn-primary   btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true">下移</span></button></td></tr>');
+                               tr1.data("id", $(el).find(">div:first").attr("id"))
+                                   .attr("data-id", $(el).find(">div:first").attr("id"));
+                               tr1.data("op", "update")
+                                   .attr("data-op", "update")
+                               $("#tabitemTable1").find("tbody").append(tr1);
+                           });
+                           $("#detabsDia1").modal();
+                       }
+
+                    }
+                });
+            })
+
+        </script>
+
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">表格属性编辑</h4>
+                    </div>
+                    <form class="form-horizontal" id="formNew">
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="a1" class="col-sm-2 control-label">标题名称</label>
+                                <div class="col-sm-10">
+                                    <input required class="form-control" name="tabletitle" id="tabletitle" placeholder="标题名称">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="a2" class="col-sm-2 control-label">name属性</label>
+                                <div class="col-sm-10">
+                                    <input required name="tablename" class="form-control"
+                                           id="tablename" placeholder="name属性">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="a3" class="col-sm-2 control-label">id属性</label>
+                                <div class="col-sm-10">
+                                    <input required
+                                           class="form-control" name="tableid" id="tableid" placeholder="id属性">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="a3" class="col-sm-2 control-label">字段操作</label>
+                                <div class="col-sm-10">
+                                    <button type="button" class="btn btn-default  btn-toolbar" id="btnNewFd">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新建字段
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="a3" class="col-sm-2 control-label">控件</label>
+                                <div class="col-sm-10" style="height:150px;overflow:auto">
+                                    <table class="table" id="tableprops" name="tableprops">
+                                        <thead>
+                                            <tr>
+                                                <th>中文标题</th>
+                                                <th>标题对应数据库字段</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1111111111111</td>
+                                                <td>22222222222222</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-primary btn-xs" aria-label="Left Align">
+                                                        <span class="glyphicon glyphicon-edit" aria-hidden="true">编辑</span>
+                                                    </button> <button type="button" class="btn btn-danger  btn-xs" aria-label="Left Align">
+                                                        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true">删除</span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>1111111111111</td>
+                                                <td>22222222222222</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-primary btn-xs" aria-label="Left Align">
+                                                        <span class="glyphicon glyphicon-edit" aria-hidden="true">编辑</span>
+                                                    </button> <button type="button" class="btn btn-danger  btn-xs" aria-label="Left Align">
+                                                        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true">
+                                                            删除
+                                                        </span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>1111111111111</td>
+                                                <td>22222222222222</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-primary btn-xs" aria-label="Left Align">
+                                                        <span class="glyphicon glyphicon-edit" aria-hidden="true">编辑</span>
+                                                    </button> <button type="button" class="btn btn-danger  btn-xs" aria-label="Left Align">
+                                                        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true">删除</span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>1111111111111</td>
+
+                                                <td>22222222222222</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-primary btn-xs" aria-label="Left Align">
+                                                        <span class="glyphicon glyphicon-edit" aria-hidden="true">编辑</span>
+
+
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger  btn-xs" aria-label="Left Align">
+                                                        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true">删除</span>
+                                                    </button>
+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <input type="submit" class="btn btn-primary" id="btnSaveTable" value="保存表格信息" />
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="modal" id="newfiled" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">字段属性编辑</h4>
+                    </div>
+                    <form class="form-horizontal" id="filed">
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="a1" class="col-sm-4 control-label">中文标题</label>
+                                <div class="col-sm-8">
+                                    <input required id="fldtitle" name="fldtitle" class="form-control" placeholder="中文标题">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="a2" class="col-sm-4 control-label">标题对应数据库字段</label>
+                                <div class="col-sm-8">
+                                    <input required name="fldname" id="fldname" class="form-control"
+                                           placeholder="标题对应数据库字段">
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <input type="submit" class="btn btn-primary" value="保存字段信息" />
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="detablesDia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">新建表格</h4>
+                    </div>
+                    <form class="form-horizontal" id="itemform">
+                        <div class="modal-body">
+
+
+                            <div class="form-group">
+                                <label for="a1" class="col-sm-2 control-label">表格用途</label>
+                                <div class="col-sm-10">
+                                    <input required class="form-control" name="tableUsage" id="tableUsage" placeholder="表格用途">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="a1" class="col-sm-2 control-label">表格标题</label>
+                                <div class="col-sm-10">
+                                    <input required class="form-control" name="itemtle" id="itemtle" placeholder="表格标题">
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="form-group">
+                                <label for="a2" class="col-sm-2 control-label">行数</label>
+                                <div class="col-sm-10">
+                                    <input required name="itemhang" positiveinteger="true" class="form-control" id="itemhang" placeholder="行数">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="a3" class="col-sm-2 control-label">列数</label>
+                                <div class="col-sm-10">
+                                    <input required positiveinteger="true" class="form-control" name="itemlie" id="itemlie" placeholder="行数">
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <input type="submit" class="btn btn-primary" value="新建条目" />
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="detabsDia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="overflow:auto">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">插入选项卡</h4>
+                    </div>
+                    <form class="form-horizontal" id="detabsInsert">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="a1" class="col-sm-2 control-label">选项卡用途</label>
+                                <div class="col-sm-10">
+                                    <input required class="form-control" id="tabsUsage" name="tabsUsage" placeholder="选项卡用途">
+                                </div>
+                            </div>
+
+
+                            <div class="form-group" id="divTabPlus">
+
+                                <label for="a3" class="col-sm-2 control-label">操作</label>
+                                <div class="col-sm-10">
+                                    <button type="button" id="buttonPlus" class="btn btn-default  btn-toolbar">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+
+
+
+                            </div>
+
+
+
+                            <div class="form-group" id="divTabs">
+                                <label for="a3" class="col-sm-2 control-label">选项卡列表</label>
+                                <div class="col-sm-10" style="height:130px; overflow:auto">
+                                    <table id="tabitemTable" class="table table-bordered table-condensed table-hover  table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>名称</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <input id="Hidden1" type="hidden" />
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <input type="submit" class="btn btn-primary" id="tabitemTablesubmit" value="新建选项卡" />
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="tabitem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel2">新建选项卡条目</h4>
+                    </div>
+                    <form class="form-horizontal" id="tabitemform">
+                        <div class="modal-body">
+
+
+
+
+
+                            <div class="form-group">
+                                <label for="a1" class="col-sm-2 control-label">条目标题</label>
+                                <div class="col-sm-10">
+                                    <input required class="form-control" name="tabitemtle" id="tabitemtle" placeholder="条目标题">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <input type="submit" class="btn btn-primary" value="新建条目" />
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="modal fade" id="decollsDia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="overflow:auto">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">插入口风琴</h4>
+                    </div>
+                    <form class="form-horizontal" id="decollsInsert">
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="a1" class="col-sm-2 control-label">口风琴用途</label>
+                                <div class="col-sm-10">
+                                    <input required class="form-control" id="navsUsage" name="navsUsage" placeholder="口风琴用途">
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="divCollPlus">
+
+                                <label for="a3" class="col-sm-2 control-label">操作</label>
+                                <div class="col-sm-10">
+                                    <button type="button" id="buttonPlusCol" class="btn btn-default  btn-toolbar">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+
+
+
+                            </div>
+
+
+
+                            <div class="form-group" id="divColls">
+                                <label for="a3" class="col-sm-2 control-label">口风琴列表</label>
+                                <div class="col-sm-10" style="height:130px; overflow:auto">
+                                    <table id="collitemTable" class="table table-bordered table-condensed table-hover  table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>名称</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <input type="submit" class="btn btn-primary" id="collitemcolllesubmit" value="新建口风琴" />
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="collsitem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">新建口风琴条目</h4>
+                    </div>
+                    <form class="form-horizontal" id="collitemform">
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="a1" class="col-sm-2 control-label">条目标题</label>
+                                <div class="col-sm-10">
+                                    <input required class="form-control" name="tabitemtle" id="collitemtle" placeholder="条目标题">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <input type="submit" class="btn btn-primary" value="新建条目" />
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--一下是属性编辑框-->
+
+        <div class="modal fade" id="tablenewprops" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">表格属性编辑</h4>
+                    </div>
+                    <form class="form-horizontal" id="formtablepors">
+                        <div class="modal-body">
+
+
+                            <div class="form-group">
+                                <label for="a1" class="col-sm-2 control-label">表格用途</label>
+                                <div class="col-sm-10">
+                                    <input required class="form-control" name="tableUsagePorps" id="tableUsagePorps" placeholder="表格用途">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="a1" class="col-sm-2 control-label">表格标题</label>
+                                <div class="col-sm-10">
+                                    <input required class="form-control" name="tableTltPorps" id="tableTltPorps" placeholder="表格标题">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <input type="submit" class="btn btn-primary" value="保存" />
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="detabsDia1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="overflow:auto">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">编辑</h4>
+                    </div>
+                    <form class="form-horizontal" id="detabsInsert1">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="a1" class="col-sm-2 control-label">用途</label>
+                                <div class="col-sm-10">
+                                    <input required class="form-control" id="tabsUsage1" name="tabsUsage" placeholder="选项卡用途">
+                                </div>
+                            </div>
+
+
+                            <div class="form-group" id="divTabPlus1">
+
+                                <label for="a3" class="col-sm-2 control-label">操作</label>
+                                <div class="col-sm-10">
+                                    <button type="button" id="buttonPlus1" class="btn btn-default  btn-toolbar">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group" id="divTabs1">
+                                <label for="a3" class="col-sm-2 control-label">列表</label>
+                                <div class="col-sm-10" style="height:130px; overflow:auto">
+                                    <table id="tabitemTable1" class="table table-bordered table-condensed table-hover  table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>名称</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <input id="Hidden11" type="hidden" />
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <input type="submit" class="btn btn-primary" id="tabitemTablesubmit1" value="保存" />
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="tabitem1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel21">新建选项卡条目</h4>
+                    </div>
+                    <form class="form-horizontal" id="tabitemform1">
+                        <div class="modal-body">
+
+
+
+
+
+                            <div class="form-group">
+                                <label for="a1" class="col-sm-2 control-label">条目标题</label>
+                                <div class="col-sm-10">
+                                    <input required class="form-control" name="tabitemtle1" id="tabitemtle1" placeholder="条目标题">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <input type="submit" class="btn btn-primary" value="新建条目" />
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+</body>
+</html>
